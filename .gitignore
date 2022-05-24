@@ -2,3 +2,5 @@
 *.png
 *.PNG
 *.MP4
+data/
+qualitative/
