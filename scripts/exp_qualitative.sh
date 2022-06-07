@@ -1,9 +1,10 @@
 #!/bin/bash
 
-. /home/ubuntu/anaconda3/etc/profile.d/conda.sh
+. /home/server25/anaconda3/etc/profile.d/conda.sh
 
 
-root_dir="/home/ubuntu/workspace/Experiment"
+home_dir='/home/server25/minyeong_workspace'
+root_dir="${home_dir}/Experiment"
 src_list=data/qualitative_source_wild
 drv_list=data/qualitative_speech_mead
 # ignore_list=data/qualitative_ignore
@@ -21,8 +22,8 @@ conda deactivate
 # model_dir="/home/ubuntu/workspace/BFv2v"
 # res_dir="/home/ubuntu/workspace/Experiment/qualitative/${model_label}/${timestamp}"
 
-# checkpoint="/home/server25/minyeong_workspace/BFv2v/ckpt/00000037-checkpoint.pth.tar"
-# checkpoint_headmodel="/home/server25/minyeong_workspace/BFv2v/log_headmodel/v4.2/best.tar"
+# checkpoint="${home_dir}/BFv2v/ckpt/00000037-checkpoint.pth.tar"
+# checkpoint_headmodel="${home_dir}/BFv2v/log_headmodel/v4.2/best.tar"
 
 # mkdir -p qualitative/$model_label
 # rm -rf $res_dir
@@ -40,6 +41,8 @@ conda deactivate
 #     do
 #         for drv_path in $drv_list
 #         do
+            # src_path=${home_dir}/$src_path
+            # drv_path=${home_dir}/$drv_path
 #             src=$(basename $src_path .png)
 #             drv=$(basename $drv_path .mp4)
 #             checkpoint=$checkpoint_dir/$ckpt
@@ -89,10 +92,10 @@ conda deactivate
 ### Nvidia Face Vid2Vid ###
 # model_label=NFv2v
 # timestamp=`date +%Y%m%d%H%M`
-# model_dir="/home/server25/minyeong_workspace/fv2v"
-# res_dir="/home/server25/minyeong_workspace/Experiment/qualitative/${model_label}/${timestamp}"
+# model_dir="${home_dir}/fv2v"
+# res_dir="${home_dir}/Experiment/qualitative/${model_label}/${timestamp}"
 
-# checkpoint="/home/server25/minyeong_workspace/fv2v/ckpt/00000189-checkpoint.pth.tar"
+# checkpoint="${home_dir}/fv2v/ckpt/00000189-checkpoint.pth.tar"
 
 # mkdir -p qualitative/$model_label
 # rm -rf $res_dir
@@ -104,6 +107,8 @@ conda deactivate
 # do
 #     for drv_path in $drv_list
 #     do
+        # src_path=${home_dir}/$src_path
+        # drv_path=${home_dir}/$drv_path
 #         src=$(basename $src_path .png)
 #         drv=$(basename $drv_path .mp4)
 #         source_image=$src_path
@@ -146,10 +151,10 @@ conda deactivate
 ### Thin Plate Spline Motion Model ###
 model_label=TPSMM
 timestamp=`date +%Y%m%d%H%M`
-model_dir="/home/ubuntu/workspace/TPSMM"
-res_dir="/home/ubuntu/workspace/Experiment/qualitative/${model_label}/${timestamp}"
+model_dir="${home_dir}/TPSMM"
+res_dir="${home_dir}/Experiment/qualitative/${model_label}/${timestamp}"
 
-checkpoint="/home/ubuntu/workspace/TPSMM/ckpt/vox.pth.tar"
+checkpoint="${home_dir}/TPSMM/ckpt/vox.pth.tar"
 
 mkdir -p qualitative/$model_label
 rm -rf $res_dir
@@ -161,6 +166,8 @@ for src_path in $src_list
 do
     for drv_path in $drv_list
     do
+        src_path=${home_dir}/$src_path
+        drv_path=${home_dir}/$drv_path
         src=$(basename $src_path .png)
         drv=$(basename $drv_path .mp4)
         source_image=$src_path

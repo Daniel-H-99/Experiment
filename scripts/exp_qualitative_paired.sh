@@ -1,9 +1,9 @@
 #!/bin/bash
 
-. /home/ubuntu/anaconda3/etc/profile.d/conda.sh
+. /home/server25/anaconda3/etc/profile.d/conda.sh
 
-
-root_dir="/home/server25/minyeong_workspace/Experiment"
+home_dir='/home/server25/minyeong_workspace'
+root_dir="${home_dir}/Experiment"
 pair_list=data/qualitative_pairs
 # src_list=data/qualitative_source
 # drv_list=data/qualitative_speech
@@ -20,11 +20,11 @@ conda deactivate
 ### Ours ###
 # model_label=Ours
 # timestamp=`date +%Y%m%d%H%M`
-# model_dir="/home/ubuntu/workspace/BFv2v"
-# res_dir="/home/ubuntu/workspace/Experiment/qualitative/${model_label}/${timestamp}"
+# model_dir="${home_dir}/BFv2v"
+# res_dir="${home_dir}/Experiment/qualitative/${model_label}/${timestamp}"
 
-# checkpoint="/home/ubuntu/workspace/BFv2v/ckpt_v9/wo_mask_ft.tar"
-# checkpoint_headmodel="/home/ubuntu/workspace/BFv2v/log_headmodel/v4.2/best.tar"
+# checkpoint="${home_dir}/BFv2v/ckpt_v9/wo_mask_ft.tar"
+# checkpoint_headmodel="${home_dir}/BFv2v/log_headmodel/v4.2/best.tar"
 
 # mkdir -p qualitative/$model_label
 # rm -rf $res_dir
@@ -35,8 +35,8 @@ conda deactivate
 # for pair in $pair_list
 # do
 #     pair=(`echo $pair | tr "," "\n"`)
-#     src_path=${pair[0]}
-#     drv_path=${pair[1]}
+#     src_path=${home_dir}/${pair[0]}
+#     drv_path=${home_dir}/${pair[1]}
 #     src=$(basename $src_path .png)
 #     drv=$(basename $drv_path .mp4)
 #     source_image=$src_path
@@ -83,27 +83,19 @@ conda deactivate
 ## Nvidia Face Vid2Vid ###
 model_label=NFv2v
 timestamp=`date +%Y%m%d%H%M`
-model_dir="/home/ubuntu/workspace/fv2v"
-res_dir="/home/ubuntu/workspace/Experiment/qualitative/${model_label}/${timestamp}"
+model_dir="${home_dir}/workspace/fv2v"
+res_dir="${home_dir}/Experiment/qualitative/${model_label}/${timestamp}"
 
-<<<<<<< HEAD
-checkpoint="/home/server25/minyeong_workspace/BFv2v/ckpt/00000011-checkpoint.pth.tar"
-checkpoint_headmodel="/home/server25/minyeong_workspace/BFv2v/log_headmodel/v4.2/best.tar"
-=======
-checkpoint="/home/ubuntu/workspace/fv2v/ckpt/00000189-checkpoint.pth.tar"
->>>>>>> 8058dbe2c5addb4a529c5770eeea805b44f436d6
+checkpoint_headmodel="${home_dir}/BFv2v/log_headmodel/v4.2/best.tar"
 
-mkdir -p qualitative/$model_label
-rm -rf $res_dir
-mkdir $res_dir
 
 cd $model_dir
 
 for pair in $pair_list
 do
     pair=(`echo $pair | tr "," "\n"`)
-    src_path=${pair[0]}
-    drv_path=${pair[1]}
+    src_path=${home_dir}/${pair[0]}
+    drv_path=${home_dir}/${pair[1]}
     src=$(basename $src_path .png)
     drv=$(basename $drv_path .mp4)
     source_image=$src_path
@@ -145,10 +137,10 @@ done
 ### Thin Plate Spline Motion Model ###
 model_label=TPSMM
 timestamp=`date +%Y%m%d%H%M`
-model_dir="/home/server25/minyeong_workspace/TPSMM"
-res_dir="/home/server25/minyeong_workspace/Experiment/qualitative/${model_label}/${timestamp}"
+model_dir="${home_dir}/TPSMM"
+res_dir="${home_dir}/Experiment/qualitative/${model_label}/${timestamp}"
 
-checkpoint="/home/server25/minyeong_workspace/TPSMM/ckpt/vox.pth.tar"
+checkpoint="${home_dir}/TPSMM/ckpt/vox.pth.tar"
 
 mkdir -p qualitative/$model_label
 rm -rf $res_dir
@@ -159,8 +151,8 @@ cd $model_dir
 for pair in $pair_list
 do
     pair=(`echo $pair | tr "," "\n"`)
-    src_path=${pair[0]}
-    drv_path=${pair[1]}
+    src_path=${home_dir}/${pair[0]}
+    drv_path=${home_dir}/${pair[1]}
     src=$(basename $src_path .png)
     drv=$(basename $drv_path .mp4)
     source_image=$src_path
