@@ -3,7 +3,7 @@
 . /home/server25/anaconda3/etc/profile.d/conda.sh
 
 root_dir="/home/server25/minyeong_workspace/Experiment"
-src_list=data/qualitative_source
+src_list=data/qualitative_source_wild
 drv_list=data/qualitative_speech
 # ignore_list=data/qualitative_ignore
 
@@ -20,7 +20,7 @@ conda deactivate
 # model_dir="/home/server25/minyeong_workspace/BFv2v"
 # res_dir="/home/server25/minyeong_workspace/Experiment/qualitative/${model_label}/${timestamp}"
 
-# checkpoint="/home/server25/minyeong_workspace/BFv2v/ckpt/00000030-checkpoint.pth.tar"
+# checkpoint="/home/server25/minyeong_workspace/BFv2v/ckpt/00000037-checkpoint.pth.tar"
 # checkpoint_headmodel="/home/server25/minyeong_workspace/BFv2v/log_headmodel/v4.2/best.tar"
 
 # mkdir -p qualitative/$model_label
@@ -45,8 +45,8 @@ conda deactivate
 
 #         conda deactivate
 
-#         ffmpeg -y -i ${res_dir}/mute_$vid -i $driving_video -map 0:v:0 -map 1:a:0 -filter:v fps=25 ${res_dir}/${vid}
-#         rm -rf ${res_dir}/mute_${vid}
+#         # ffmpeg -y -i ${res_dir}/mute_$vid -i $driving_video -map 0:v:0 -map 1:a:0 -filter:v fps=25 ${res_dir}/${vid}
+#         # rm -rf ${res_dir}/mute_${vid}
 
 #         # shot_dir=${res_dir}/${vid}_shot
 #         # rm -rf $shot_dir
@@ -158,8 +158,8 @@ do
         python demo.py --config config/vox-256.yaml --checkpoint $checkpoint --source_image $source_image --driving_video $driving_video --result_video ${res_dir}/mute_${vid} --find_best_frame
         conda deactivate
 
-        # ffmpeg -y -i ${res_dir}/mute_$vid -i $driving_video -map 0:v:0 -map 1:a:0 -filter:v fps=25 ${res_dir}/${vid}
-        # rm -rf ${res_dir}/mute_${vid}
+        ffmpeg -y -i ${res_dir}/mute_$vid -i $driving_video -map 0:v:0 -map 1:a:0 -filter:v fps=25 ${res_dir}/${vid}
+        rm -rf ${res_dir}/mute_${vid}
 
         # shot_dir=${res_dir}/${vid}_shot
         # rm -rf $shot_dir

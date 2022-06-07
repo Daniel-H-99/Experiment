@@ -3,7 +3,7 @@
 . /home/server25/anaconda3/etc/profile.d/conda.sh
 
 root_dir="/home/server25/minyeong_workspace/Experiment"
-src_list=data/qualitative_source
+src_list=data/qualitative_source_wild
 drv_list=data/qualitative_speech
 # ignore_list=data/qualitative_ignore
 
@@ -20,7 +20,7 @@ timestamp=`date +%Y%m%d%H%M`
 model_dir="/home/server25/minyeong_workspace/BFv2v"
 res_dir="/home/server25/minyeong_workspace/Experiment/qualitative/${model_label}/${timestamp}"
 
-checkpoint="/home/server25/minyeong_workspace/BFv2v/ckpt/00000058-checkpoint.pth.tar"
+checkpoint="/home/server25/minyeong_workspace/BFv2v/ckpt_v5/last.tar"
 checkpoint_headmodel="/home/server25/minyeong_workspace/BFv2v/log_headmodel/v4.2/best.tar"
 
 mkdir -p qualitative/$model_label
@@ -42,7 +42,7 @@ do
         conda activate fom
         python drive_mesh.py --checkpoint $checkpoint_headmodel --src_img $source_image --drv_vid $driving_video
 
-        python demo.py --config config/vox-256-renderer_v4.yaml --checkpoint "${checkpoint}" --source_image $source_image --checkpoint_headmodel $checkpoint_headmodel --result_dir $res_dir --result_vid mute_$vid --driven_dir log_headmodel/v4.2 --driving_video $driving_video
+        python demo.py --config config/vox-256-renderer_v5.yaml --checkpoint "${checkpoint}" --source_image $source_image --checkpoint_headmodel $checkpoint_headmodel --result_dir $res_dir --result_vid mute_$vid --driven_dir log_headmodel/v4.2 --driving_video $driving_video
 
         conda deactivate
 
