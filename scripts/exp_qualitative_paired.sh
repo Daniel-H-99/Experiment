@@ -23,7 +23,7 @@ timestamp=`date +%Y%m%d%H%M`
 model_dir="${home_dir}/BFv2v"
 res_dir="${home_dir}/Experiment/qualitative/${model_label}/${timestamp}"
 
-checkpoint="${home_dir}/BFv2v/ckpt_v9/wo_mask_ft.tar"
+checkpoint="${home_dir}/BFv2v/ckpt_v2/last.tar"
 checkpoint_headmodel="${home_dir}/BFv2v/log_headmodel/v4.2/best.tar"
 
 mkdir -p qualitative/$model_label
@@ -44,9 +44,9 @@ do
     label=${src}_${drv}
     vid=${label}.mp4
     conda activate fom
-    python drive_mesh.py --checkpoint $checkpoint_headmodel --src_img $source_image --drv_vid $driving_video
+    python drive_mesh.py --checkpoint $checkpoint_headmodel --checkpoint_posemodel "${home_dir}/fv2v/ckpt/00000189-checkpoint.pth.tar" --src_img $source_image --drv_vid $driving_video
 
-    python demo.py --config config/vox-256-renderer_v9.yaml --checkpoint "${checkpoint}" --source_image $source_image --checkpoint_headmodel $checkpoint_headmodel --result_dir $res_dir --result_vid mute_$vid --driven_dir log_headmodel/v4.2 --driving_video $driving_video
+    python demo.py --config config/vox-256-renderer_v7.yaml --checkpoint "${checkpoint}" --source_image $source_image --checkpoint_headmodel $checkpoint_headmodel --checkpoint_posemodel "${home_dir}/fv2v/ckpt/00000189-checkpoint.pth.tar" --result_dir $res_dir --result_vid mute_$vid --driven_dir log_headmodel/v4.2 --driving_video $driving_video
 
     conda deactivate
 
